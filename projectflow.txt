@@ -1,0 +1,5 @@
+Building pipeline
+1> craete a Github repo and clone it in local (Add experimental & data)
+2> Add src folder along with all components(run then individually)
+3> add data, models reports directories to. gitignore file
+4> Now git add, commit, push
