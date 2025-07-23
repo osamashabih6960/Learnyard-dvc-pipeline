@@ -1,5 +1,42 @@
-Building pipeline
-1> craete a Github repo and clone it in local (Add experimental & data)
-2> Add src folder along with all components(run then individually)
-3> add data, models reports directories to. gitignore file
+Building Pipeline:
+1> Create a GitHub repo and clone it in local (Add experiments & data).
+2> Add src folder along with all components(run them individually).
+3> Add data, models, reports directories to .gitignore file
 4> Now git add, commit, push
+
+Setting up dcv pipeline (without params) [yaml crash course - https://github.com/vikashishere/YAML-Crash-Course]
+5> Create dvc.yaml file and add stages to it.
+6> dvc init then do "dvc repro" to test the pipeline automation. (check dvc dag)
+7> Now git add, commit, push
+
+Setting up dcv pipeline (with params) 
+8> add params.yaml file
+9> Add the params setup (comment out the relevant code blocks from respective modules, also modify dvc.yaml)
+10> Do "dvc repro" again to test the pipeline along with the params
+11> Now git add, commit, push
+
+Expermients with DVC:
+12> pip install dvclive
+13> Add the dvclive code block (as given on model_evaluation.py)
+14> Do "dvc exp run", it will create a new dvc.yaml(if already not there) and dvclive directory (each run will be considered as an experiment by DVC)
+15> Do "dvc exp show" on terminal to see the experiments or use extension on VSCode (install dvc extension)
+16> Do "dvc exp remove {exp-name}" to remove exp (optional) | "dvc exp apply {exp-name}" to reproduce prev exp
+17> Change params, re-run code (produce new experiments)
+18> Now git add, commit, push
+
+
+Adding remote storage to S3
+19> Login to AWS console (suggested to setup budget)
+20> Create an IAM user(straight forward process)
+21> Create S3 bucket (set unique name and create)
+22> pip install dvc[s3]
+23> pip install awscli
+24> aws configure
+25> dvc remote add -d dvcstorage s3://bucketname
+26> dvc commit-push the exp outcome or data you want to keep
+24> Finally git add-commit-push
+
+
+Extra:
+> Remove/delete your aws resources
+> Adding stage to dvc.yaml: "dvc stage add -n data_ingestion -d src/data_ingestion.py -o data/raw python src/data_ingestion.py"
