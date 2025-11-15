@@ -7,5 +7,3 @@ feature_engineering:
 model_building:
   n_estimators: 15
   random_state: 2
-
-  
